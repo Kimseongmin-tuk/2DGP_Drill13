@@ -1,3 +1,5 @@
+# Drill #13 제출 - 2022184007 김성민
+
 from pico2d import open_canvas, delay, close_canvas
 import game_framework
 
