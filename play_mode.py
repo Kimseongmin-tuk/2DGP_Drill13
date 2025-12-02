@@ -2,14 +2,12 @@ import random
 
 from pico2d import *
 import game_framework
-
-
 import game_world
 import common
 
 from boy import Boy
 from court import Court
-
+from ball import Ball
 
 def handle_events():
     events = get_events()
@@ -18,7 +16,6 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
-
         else:
             common.boy.handle_event(event)
 
@@ -30,6 +27,11 @@ def init():
     common.boy = Boy()
     game_world.add_object(common.boy, 1)
 
+    # 공 100개 생성
+    for _ in range(100):
+        ball = Ball()
+        game_world.add_object(ball, 1)
+        game_world.add_collision_pair('boy:ball', common.boy, ball)
 
 def finish():
     game_world.clear()
@@ -50,4 +52,3 @@ def pause():
 
 def resume():
     pass
-
